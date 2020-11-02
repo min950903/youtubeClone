@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-
-import { getVideoList } from './api/youtubeAPI';
+import { getSearchList, getVideoList } from './api/youtubeAPI';
 import './app.css';
 import DetailContent from './components/detailContent';
 import Header from './components/header';
-import MainContents from './components/mainContents';
+import VideoList from './components/videoList';
 
 const App = () => {
   const [videoList, setVideoList] = useState([]);
@@ -20,10 +19,8 @@ const App = () => {
   }, []);
 
   const onDetailClick = (event) => {
-    const clickedVideo = event.target.name;
-    const video = videoList.filter(
-      (video) => clickedVideo === video.id.videoId,
-    );
+    const videoID = event.target.name;
+    const video = videoList.filter((video) => videoID === video.id);
 
     setDetailVideo(video[0]);
     setIsDetail(true);
@@ -37,15 +34,16 @@ const App = () => {
     event.preventDefault();
 
     const searchKeyWord = inputRef.current.value;
-    getVideoList(searchKeyWord).then((response) => {
+    getSearchList(searchKeyWord).then((response) => {
       setVideoList(response);
     });
 
+    inputRef.current.value = '';
     setIsDetail(false);
   };
 
   return (
-    <>
+    <div className="default">
       <Header
         onClickHome={onClickHome}
         onSearch={onSearch}
@@ -54,9 +52,9 @@ const App = () => {
       {isDetail ? (
         <DetailContent detailVideo={detailVideo} />
       ) : (
-        <MainContents videoList={videoList} onDetailClick={onDetailClick} />
+        <VideoList videoList={videoList} onDetailClick={onDetailClick} />
       )}
-    </>
+    </div>
   );
 };
 
