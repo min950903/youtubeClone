@@ -1,10 +1,10 @@
 import React from 'react';
-import '../assest/main.css';
 import VideoItem from './videoItem';
+import styles from '../assest/videoList.module.css';
 
 const VideoList = ({ videoList, onDetailClick }) => {
   return (
-    <>
+    <div className={styles.videos}>
       {videoList !== undefined &&
         videoList.map((video) => (
           <VideoItem
@@ -13,7 +13,7 @@ const VideoList = ({ videoList, onDetailClick }) => {
             onDetailClick={onDetailClick}
           />
         ))}
-    </>
+    </div>
   );
 };
 

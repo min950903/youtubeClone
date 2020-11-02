@@ -1,20 +1,23 @@
 import React from 'react';
-
+import styles from '../assest/videoItem.module.css';
 const VideoItem = ({ video, onDetailClick }) => {
   return (
     <>
-      <div className="mainContents">
-        <div className="content">
+      <li className={styles.container}>
+        <div className={styles.video}>
           <img
-            src={video.snippet.thumbnails.default.url}
-            alt="imgFile"
+            className={styles.thumbnail}
+            src={video.snippet.thumbnails.medium.url}
+            alt="video thumbnail"
             onClick={onDetailClick}
             name={video.id}
           />
-          <h3>{video.snippet.title}</h3>
-          <h5>{video.snippet.channelTitle}</h5>
+          <div>
+            <p className={styles.title}>{video.snippet.title}</p>
+            <p className={styles.channelTitle}>{video.snippet.channelTitle}</p>
+          </div>
         </div>
-      </div>
+      </li>
     </>
   );
 };

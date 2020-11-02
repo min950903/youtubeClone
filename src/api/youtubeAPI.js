@@ -5,7 +5,7 @@ const API_KEY = 'AIzaSyDctJuMg1TeKV2F6svtPt4DM_2At1_PsHk';
 export const getVideoList = async () => {
   try {
     const response = await client.get(
-      `/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&key=${API_KEY}`,
+      `/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=20&regionCode=US&key=${API_KEY}`,
     );
 
     return response.data.items;
