@@ -1,0 +1,17 @@
+.header {
+  width: 50vw;
+  height: 7vh;
+  background-color: black;
+}
+
+.header_img {
+  width: 9vw;
+  height: 7vh;
+}
+
+.input {
+  width: 80%;
+  height: 40%;
+  vertical-align: top;
+  margin-top: 15px;
+}

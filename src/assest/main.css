@@ -1,0 +1,12 @@
+.mainContents {
+  width: 50vw;
+  border: 1px;
+}
+
+.content {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  border: 1px solid black;
+}
