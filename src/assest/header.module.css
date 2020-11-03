@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  height: 4rem;
+  padding: 0.5em 1em;
+  background: black;
+  color: white;
+}
+
+.logo {
+  display: flex;
+}
+.logo:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  color: red;
+}
+
+.img {
+  display: flex;
+  align-items: center;
+}
+
+.logoText {
+  font-size: 1.7rem;
+  margin: 0.2em 1em 0 0;
+  align-items: center;
+}
+
+.input {
+  flex-basis: 100%;
+  font-size: 1.7rem;
+  outline: 0;
+}

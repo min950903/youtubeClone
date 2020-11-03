@@ -2,6 +2,7 @@ import React from 'react';
 import '../assest/detail.css';
 
 const DetailContent = ({ detailVideo }) => {
+  console.log(detailVideo.id);
   return (
     <>
       {detailVideo && (

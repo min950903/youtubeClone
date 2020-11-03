@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { getSearchList, getVideoList } from './api/youtubeAPI';
-import './app.css';
+import styles from './assest/app.module.css';
 import DetailContent from './components/detailContent';
 import Header from './components/header';
 import VideoList from './components/videoList';
@@ -35,7 +35,11 @@ const App = () => {
 
     const searchKeyWord = inputRef.current.value;
     getSearchList(searchKeyWord).then((response) => {
-      setVideoList(response);
+      const changeResponseId = response.map((item) => ({
+        ...item,
+        id: item.id.videoId,
+      }));
+      setVideoList(changeResponseId);
     });
 
     inputRef.current.value = '';
@@ -43,7 +47,7 @@ const App = () => {
   };
 
   return (
-    <div className="default">
+    <div className={styles.app}>
       <Header
         onClickHome={onClickHome}
         onSearch={onSearch}

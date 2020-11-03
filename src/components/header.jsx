@@ -1,24 +1,27 @@
 import React from 'react';
-import '../assest/header.css';
+import styles from '../assest/header.module.css';
 
 const Header = ({ onClickHome, onSearch, inputRef }) => {
   return (
-    <div className="header">
-      <form onSubmit={onSearch}>
+    <form onSubmit={onSearch} className={styles.header}>
+      <div className={styles.logo}>
         <img
-          src={require('../assest/img/youtube-img.png')}
-          className="header_img"
+          src={require('../assest/img/youtube-icon.png')}
+          className={styles.img}
           onClick={onClickHome}
           alt=""
         />
-        <input
-          ref={inputRef}
-          placeholder="검색"
-          className="input"
-          name="search"
-        />
-      </form>
-    </div>
+        <h1 className={styles.logoText} onClick={onClickHome}>
+          YOUTUBE
+        </h1>
+      </div>
+      <input
+        ref={inputRef}
+        placeholder="검색"
+        className={styles.input}
+        name="search"
+      />
+    </form>
   );
 };
 
