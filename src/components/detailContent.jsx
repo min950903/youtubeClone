@@ -1,21 +1,23 @@
 import React from 'react';
-import '../assest/detail.css';
+import styles from '../assest/detail.module.css';
 
-const DetailContent = ({ detailVideo }) => {
-  console.log(detailVideo.id);
+const DetailContent = ({ selectedVideo }) => {
   return (
     <>
-      {detailVideo && (
-        <div>
+      {selectedVideo && (
+        <div className={styles.detail}>
           <iframe
-            className="videoPlayer"
+            className={styles.videoPlayer}
             type="text/html"
-            src={`https://www.youtube.com/embed/${detailVideo.id}`}
+            src={`https://www.youtube.com/embed/${selectedVideo.id}`}
             frameBorder="0"
-            title={detailVideo.id}
+            allowFullScreen
+            title={selectedVideo.id}
           />
-          <h2>{detailVideo.snippet.title}</h2>
-          <h5>{detailVideo.snippet.description}</h5>
+          <h2>{selectedVideo.snippet.title}</h2>
+          <pre className={styles.description}>
+            {selectedVideo.snippet.description}
+          </pre>
         </div>
       )}
     </>
