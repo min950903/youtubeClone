@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getSearchList, getVideoList } from './api/youtubeAPI';
 import styles from './assest/app.module.css';
 import DetailContent from './components/detailContent';
@@ -7,10 +7,12 @@ import VideoList from './components/videoList';
 
 const App = () => {
   const [videoList, setVideoList] = useState([]);
-  const [isDetail, setIsDetail] = useState(false);
-  const [detailVideo, setDetailVideo] = useState();
+  const [selectedVideo, setSelectedVideo] = useState();
 
   const inputRef = useRef(null);
+
+  // TODO 유니코드 문자 수정
+  const decode = require('unescape');
 
   useEffect(() => {
     getVideoList().then((response) => {
@@ -18,20 +20,18 @@ const App = () => {
     });
   }, []);
 
-  const onDetailClick = (event) => {
-    const videoID = event.target.name;
-    const video = videoList.filter((video) => videoID === video.id);
+  const onVideoClick = useCallback((video) => {
+    setSelectedVideo(video);
+  }, []);
 
-    setDetailVideo(video[0]);
-    setIsDetail(true);
-  };
+  const onClickHome = useCallback(() => {
+    setSelectedVideo(null);
+  }, []);
 
-  const onClickHome = () => {
-    setIsDetail(false);
-  };
-
-  const onSearch = (event) => {
+  const onSearch = useCallback((event) => {
     event.preventDefault();
+
+    setSelectedVideo(null);
 
     const searchKeyWord = inputRef.current.value;
     getSearchList(searchKeyWord).then((response) => {
@@ -43,8 +43,7 @@ const App = () => {
     });
 
     inputRef.current.value = '';
-    setIsDetail(false);
-  };
+  }, []);
 
   return (
     <div className={styles.app}>
@@ -53,11 +52,20 @@ const App = () => {
         onSearch={onSearch}
         inputRef={inputRef}
       />
-      {isDetail ? (
-        <DetailContent detailVideo={detailVideo} />
-      ) : (
-        <VideoList videoList={videoList} onDetailClick={onDetailClick} />
-      )}
+      <div className={styles.container}>
+        {selectedVideo && (
+          <div className={styles.detail}>
+            <DetailContent selectedVideo={selectedVideo} />
+          </div>
+        )}
+        <div className={styles.videos}>
+          <VideoList
+            videoList={videoList}
+            onVideoClick={onVideoClick}
+            display={selectedVideo ? 'list' : 'grid'}
+          />
+        </div>
+      </div>
     </div>
   );
 };

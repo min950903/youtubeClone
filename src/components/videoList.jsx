@@ -2,7 +2,7 @@ import React from 'react';
 import VideoItem from './videoItem';
 import styles from '../assest/videoList.module.css';
 
-const VideoList = ({ videoList, onDetailClick }) => {
+const VideoList = ({ videoList, onVideoClick, display }) => {
   return (
     <div className={styles.videos}>
       {videoList !== undefined &&
@@ -10,7 +10,8 @@ const VideoList = ({ videoList, onDetailClick }) => {
           <VideoItem
             key={video.etag}
             video={video}
-            onDetailClick={onDetailClick}
+            onVideoClick={onVideoClick}
+            display={display}
           />
         ))}
     </div>

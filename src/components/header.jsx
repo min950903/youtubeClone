@@ -1,7 +1,9 @@
 import React from 'react';
+import { memo } from 'react';
 import styles from '../assest/header.module.css';
 
-const Header = ({ onClickHome, onSearch, inputRef }) => {
+const Header = memo(({ onClickHome, onSearch, inputRef }) => {
+  console.log('header');
   return (
     <form onSubmit={onSearch} className={styles.header}>
       <div className={styles.logo}>
@@ -23,6 +25,6 @@ const Header = ({ onClickHome, onSearch, inputRef }) => {
       />
     </form>
   );
-};
+});
 
 export default Header;
