@@ -11,14 +11,28 @@ const App = () => {
 
   const inputRef = useRef(null);
 
-  // TODO 유니코드 문자 수정
   const decode = require('unescape');
+  const changeUnicodeInVideo = useCallback(
+    (response) => {
+      const changedvideos = response.map((video) => ({
+        ...video,
+        snippet: {
+          ...video.snippet,
+          description: decode(video.snippet.description),
+          channelTitle: decode(video.snippet.channelTitle),
+        },
+      }));
+
+      return changedvideos;
+    },
+    [decode],
+  );
 
   useEffect(() => {
     getVideoList().then((response) => {
-      setVideoList(response);
+      setVideoList(changeUnicodeInVideo(response));
     });
-  }, []);
+  }, [changeUnicodeInVideo]);
 
   const onVideoClick = useCallback((video) => {
     setSelectedVideo(video);
@@ -28,22 +42,21 @@ const App = () => {
     setSelectedVideo(null);
   }, []);
 
-  const onSearch = useCallback((event) => {
-    event.preventDefault();
+  const onSearch = useCallback(
+    (event) => {
+      event.preventDefault();
 
-    setSelectedVideo(null);
+      setSelectedVideo(null);
 
-    const searchKeyWord = inputRef.current.value;
-    getSearchList(searchKeyWord).then((response) => {
-      const changeResponseId = response.map((item) => ({
-        ...item,
-        id: item.id.videoId,
-      }));
-      setVideoList(changeResponseId);
-    });
+      const searchKeyWord = inputRef.current.value;
+      getSearchList(searchKeyWord).then((response) => {
+        setVideoList(changeUnicodeInVideo(response));
+      });
 
-    inputRef.current.value = '';
-  }, []);
+      inputRef.current.value = '';
+    },
+    [changeUnicodeInVideo],
+  );
 
   return (
     <div className={styles.app}>

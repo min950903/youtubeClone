@@ -4,7 +4,7 @@ import styles from '../assest/videoList.module.css';
 
 const VideoList = ({ videoList, onVideoClick, display }) => {
   return (
-    <div className={styles.videos}>
+    <ul className={styles.videos}>
       {videoList !== undefined &&
         videoList.map((video) => (
           <VideoItem
@@ -14,7 +14,7 @@ const VideoList = ({ videoList, onVideoClick, display }) => {
             display={display}
           />
         ))}
-    </div>
+    </ul>
   );
 };
 

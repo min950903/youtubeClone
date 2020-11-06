@@ -3,7 +3,6 @@ import { memo } from 'react';
 import styles from '../assest/header.module.css';
 
 const Header = memo(({ onClickHome, onSearch, inputRef }) => {
-  console.log('header');
   return (
     <form onSubmit={onSearch} className={styles.header}>
       <div className={styles.logo}>
