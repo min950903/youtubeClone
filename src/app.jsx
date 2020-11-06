@@ -19,7 +19,7 @@ const App = () => {
         snippet: {
           ...video.snippet,
           description: decode(video.snippet.description),
-          channelTitle: decode(video.snippet.channelTitle),
+          title: decode(video.snippet.title),
         },
       }));
 
