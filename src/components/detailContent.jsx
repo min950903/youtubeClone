@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../assest/detail.module.css';
+import styles from '../assets/detail.module.css';
 
 const DetailContent = ({ selectedVideo }) => {
   return (

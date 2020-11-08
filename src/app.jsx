@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getSearchList, getVideoList } from './api/youtubeAPI';
-import styles from './assest/app.module.css';
+import styles from './assets/app.module.css';
 import DetailContent from './components/detailContent';
 import Header from './components/header';
 import VideoList from './components/videoList';

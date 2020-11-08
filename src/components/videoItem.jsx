@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import styles from '../assest/videoItem.module.css';
+import styles from '../assets/videoItem.module.css';
 
 const VideoItem = memo(({ video, onVideoClick, display }) => {
   const displayType = display === 'list' ? styles.list : styles.grid;

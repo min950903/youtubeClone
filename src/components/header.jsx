@@ -1,13 +1,13 @@
 import React from 'react';
 import { memo } from 'react';
-import styles from '../assest/header.module.css';
+import styles from '../assets/header.module.css';
 
 const Header = memo(({ onClickHome, onSearch, inputRef }) => {
   return (
     <form onSubmit={onSearch} className={styles.header}>
       <div className={styles.logo}>
         <img
-          src={require('../assest/img/youtube-icon.png')}
+          src={require('../assets/img/youtube-icon.png')}
           className={styles.img}
           onClick={onClickHome}
           alt=""
